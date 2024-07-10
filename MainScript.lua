@@ -281,6 +281,7 @@ task.spawn(function()
 end)
 
 local GUI = GuiLibrary.CreateMainWindow()
+shared.MainWindowGUI = GUI
 local Combat = GuiLibrary.CreateWindow({
 	Name = "Combat", 
 	Icon = "vape/assets/CombatIcon.png", 

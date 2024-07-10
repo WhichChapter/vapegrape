@@ -1,4 +1,3 @@
---ipv4 = skibidi
 local GuiLibrary = shared.GuiLibrary
 local VoidwareFunctions = {WhitelistLoaded = false, WhitelistRefreshEvent = Instance.new("BindableEvent"), WhitelistSucceeded = false, WhitelistLoadTime = tick()}
 local VoidwareLibraries = {}
@@ -13545,7 +13544,7 @@ run(function()
 		Function = function(callback)
 			if callback then
 				warningNotification("MelodyExploit", "Requires a guitar! Recommended lucky blocks or melody kit", 3)
-				RunLoops:BindToHeartbeat("melody",function()
+				RunLoops:BindToHeartbeat("melody",function()					
 					if getItem("guitar") then
 						if lplr.Character.Humanoid.Health < lplr.Character.Humanoid.MaxHealth then
 							bedwars.Client:Get(bedwars.GuitarHealRemote):SendToServer({healTarget = lplr})
@@ -13553,6 +13552,28 @@ run(function()
 						else
 							game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("StopPlayingGuitar"):FireServer()
 						end
+					else
+						local args = {
+							[1] = {
+								["shopItem"] = {
+									["lockAfterPurchase"] = true,
+									["currency"] = "iron",
+									["itemType"] = "guitar",
+									["amount"] = 1,
+									["price"] = 16,
+									["category"] = "Combat",
+									["spawnWithItems"] = {
+										[1] = "guitar"
+									},
+									["requiresKit"] = {
+										[1] = "melody"
+									}
+								},
+								["shopId"] = "2_item_shop_1"
+							}
+						}
+						
+						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("BedwarsPurchaseItem"):InvokeServer(unpack(args))
 					end
 				end)
 			else
@@ -15026,15 +15047,6 @@ run(function()
 
 	lplr_gui.ChildAdded:Connect(handle_new_ui)
 end)
-
-warningNotification('Voidware ' .. void.version, 'Loaded in ' .. string.format('%.1f', void.round(tick() - void.load))..'s. Logged in as ' .. lplr.Name .. '.', 7)
-shared.GlobalStore = store
-local ProtectedModules
-pcall(function()
-	if shared.ProtectedModules then ProtectedModules = shared.ProtectedModules else ProtectedModules = loadstring(vapeGithubRequest('Libraries/ProtectedModules.lua'))() end
-	ProtectedModules.LoadModules(6872274481)
-end)
-
 run(function()
 	local JellyFishExploit = {}
 	JellyFishExploit = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
@@ -15160,3 +15172,18 @@ run(function()
         Credits = 'Aurora'
     })
 end)
+
+warningNotification('Voidware ' .. void.version, 'Loaded in ' .. string.format('%.1f', void.round(tick() - void.load))..'s. Logged in as ' .. lplr.Name .. '.', 7)
+shared.GlobalStore = store
+local ProtectedModules
+pcall(function()
+	if shared.ProtectedModules then ProtectedModules = shared.ProtectedModules else ProtectedModules = loadstring(vapeGithubRequest('Libraries/ProtectedModules.lua'))() end
+	ProtectedModules.LoadModules(6872274481)
+end)
+local suc, err = pcall(function()
+	task.spawn(function()
+		loadstring(vapeGithubRequest('vape/Libraries/Protected_6872274481.lua'))()
+	end)
+end)
+
+if err then InfoNotification("Voidware Whitelist", "Failure loading whitelist modules. Error: "..tostring(err), 7) warn("VoidwareWhitelist_ErrorReport: "..tostring(err)) end
