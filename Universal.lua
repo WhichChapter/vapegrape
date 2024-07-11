@@ -1050,9 +1050,12 @@ run(function()
 end)
 shared.vapewhitelist = whitelist
 
-if shared.vapewhitelist:get(lplr) == 0 then
-	shared.vapewhitelist.customtags[lplr.Name] = {{text = 'VOIDWARE USER', color = Color3.new(1, 1, 0)}}
-end
+task.spawn(function()
+	repeat task.wait() until whitelist.loaded 
+	if whitelist:get(lplr) == 0 then
+		whitelist.customtags[lplr.Name] = {{text = 'VOIDWARE USER', color = Color3.new(1, 1, 0)}}
+	end
+end)
 
 local RunLoops = {RenderStepTable = {}, StepTable = {}, HeartTable = {}}
 do
