@@ -3610,7 +3610,7 @@ run(function()
 		Function = function(val)
 
 		end,
-		Default = 2
+		Default = 0
 	})
 	killauraangle = Killaura.CreateSlider({
 		Name = "Max angle",
