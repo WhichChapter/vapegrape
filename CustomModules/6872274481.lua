@@ -2017,7 +2017,7 @@ run(function()
 				return false
 			end
 		end
-		for i,v in pairs(game:GetService("CoreGui"):GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
+		for i,v in pairs(coreGui:GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
 			if v.Parent:IsA("ScreenGui") and v.Parent.Enabled then
 				if v.Active then
 					return false
@@ -11152,7 +11152,7 @@ run(function()
 				
 				Table["_MainGui"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 				Table["_MainGui"].Name = "MainGui"
-				Table["_MainGui"].Parent = game:GetService("CoreGui")
+				Table["_MainGui"].Parent = coreGui
 				
 				Table["_MainFrame"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 				Table["_MainFrame"].BackgroundTransparency = 0.20000000298023224
@@ -11418,7 +11418,7 @@ run(function()
 				
 				
 				else
-				local MainGui = game:GetService("CoreGui"):FindFirstChild("MainGui")
+				local MainGui = coreGui:FindFirstChild("MainGui")
 				if MainGui then 
 					MainGui:Destroy()
 				end	

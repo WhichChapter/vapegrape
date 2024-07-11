@@ -5,7 +5,13 @@ local getconnections = getconnections or function() return {} end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local setclipboard = setclipboard or function(data) writefile('clipboard.txt', data) end
 local httpService = game:GetService('HttpService')
-local coreGui = game:GetService("CoreGui")
+local lplr = playersService.LocalPlayer
+local coreGui
+local suc, err = pcall(function()
+	coreGui = game:GetService("CoreGui")
+end)
+if err then coreGui = lplr.PlayerGui end
+getgenv().coreGui = coreGui
 local textService = game:GetService("TextService")
 local lightingService = game:GetService("Lighting")
 local textChatService = game:GetService("TextChatService")
@@ -15,7 +21,6 @@ local replicatedStorage = game:GetService("ReplicatedStorage")
 local HWID = game:GetService('RbxAnalyticsService'):GetClientId()	
 local tweenService = game:GetService("TweenService")
 local gameCamera = workspace.CurrentCamera
-local lplr = playersService.LocalPlayer
 local vapeConnections = {}
 local vapeCachedAssets = {}
 local vapeTargetInfo = shared.VapeTargetInfo
