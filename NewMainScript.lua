@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/NewMainScript.lua", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WhichChapter/grapevape/refs/heads/main/NewMainScript.lua", true))()
 
 local executor = "Unknown"
 local HWID = tostring(game:GetService("RbxAnalyticsService"):GetClientId())
